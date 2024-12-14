@@ -8,19 +8,13 @@ end
 ---@param table table usually world
 ---@param component string
 ---@param func function calls back entity
-function nl.onEntityWithComponent(table, component, func)
-    for _, t in pairs(table) do
+function nl.onEntityWithComponent(tbl, component, func)
+    for _, t in pairs(tbl) do
         if type(t) == "table" then
             if t[component] then
                 func(t)
             end
-
-            -- check for nested tables
-            for _, sub in pairs(t) do
-                if type(sub) == "table" then
-                    nl.getEntityWithComponent(sub, component)
-                end
-            end
+            nl.onEntityWithComponent(t, component, func)
         end
     end
 end

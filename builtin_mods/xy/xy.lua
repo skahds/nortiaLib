@@ -1,6 +1,6 @@
 local xy = class()
 function xy:update()
-    nl.onEntityWithComponent(nl.world.main, "x", function (ent)
+    nl.onEntityWithComponent(nl.world, "x", function (ent)
         print(ent.x)
     end)
 end
